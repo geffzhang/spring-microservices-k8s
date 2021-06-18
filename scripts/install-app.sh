@@ -6,7 +6,7 @@ set -x
 . ./set-env.sh
 
 
-minikube addons enable ingress
+# minikube addons enable ingress
 
 cd ../k8s
 
@@ -19,7 +19,7 @@ kubectl apply -n $NAMESPACE_ORGANIZATION -f organization-secret.yaml
 kubectl apply -n $NAMESPACE_ORGANIZATION -f organization-deployment.yaml
 kubectl apply -n $NAMESPACE_GATEWAY -f gateway-configmap.yaml
 kubectl apply -n $NAMESPACE_GATEWAY -f gateway-deployment.yaml
-kubectl apply -n $NAMESPACE_GATEWAY -f ingress.yaml
+# kubectl apply -n $NAMESPACE_GATEWAY -f ingress.yaml
 
 kubectl apply -n $NAMESPACE_EMPLOYEE -f employee-configmap.yaml
 kubectl apply -n $NAMESPACE_EMPLOYEE -f employee-secret.yaml

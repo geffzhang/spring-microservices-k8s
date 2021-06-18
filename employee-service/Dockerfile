@@ -19,16 +19,16 @@ WORKDIR /tmp/target
 RUN java -Djarmode=layertools -jar *.jar extract
 
 # runtime image
-FROM gcr.io/distroless/java:${JDK_VERSION} as runtime
+FROM geffzhang/java:${JDK_VERSION} as runtime
 
 USER nonroot:nonroot
 WORKDIR /application
 
 # copy layers from build image to runtime image as nonroot user
-COPY --from=build --chown=nonroot:nonroot /tmp/target/dependencies/ ./
-COPY --from=build --chown=nonroot:nonroot /tmp/target/snapshot-dependencies/ ./
-COPY --from=build --chown=nonroot:nonroot /tmp/target/spring-boot-loader/ ./
-COPY --from=build --chown=nonroot:nonroot /tmp/target/application/ ./
+COPY --from=build  --chown=nonroot:nonroot  /tmp/target/dependencies/ ./
+COPY --from=build  --chown=nonroot:nonroot  /tmp/target/snapshot-dependencies/ ./
+COPY --from=build  --chown=nonroot:nonroot  /tmp/target/spring-boot-loader/ ./
+COPY --from=build  --chown=nonroot:nonroot  /tmp/target/application/ ./
 
 EXPOSE 8080
 
